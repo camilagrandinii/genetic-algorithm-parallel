@@ -1,0 +1,10 @@
+Iris.csv class
+1 backup_geracao.txt
+seed 2156 2 885463215
+Population 204 504 200
+Generations 200 504 200
+CrossOverFactor 0.7 0.91 0.2
+TournamentSize 2
+MutationRate 0.1 0.41 0.2
+ElitismFactor 1
+DecisionTree  max_depth=5
