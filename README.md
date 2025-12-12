@@ -1,4 +1,4 @@
-# 🚀 Algoritmo Genético Paralelo com MPI — Projeto de TCC
+# Algoritmo Genético Paralelo com MPI — Projeto de TCC
 
 Este repositório contém o código-fonte desenvolvido para o Trabalho de Conclusão de Curso (TCC) da paralelização de Algoritmos Genético (NSGA-II para seleção de atributos) utilizando MPI (Message Passing Interface).
 
