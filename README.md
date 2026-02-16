@@ -1,4 +1,4 @@
-# Parallel Genetic Algorithm with MPI — TCC Project
+# Parallel Genetic Algorithm with MPI — Thesis Project
 
 This repository contains the source code developed for the Undergraduate Thesis (TCC) on the parallelization of a Genetic Algorithm (NSGA-II for feature selection) using MPI (Message Passing Interface).
 
@@ -141,6 +141,6 @@ Passwordless SSH must work perfectly before using MPI.
 If any node is inaccessible, mpirun will fail to start the execution.
 All nodes must have Python and project dependencies installed.
 
-## 📄 Licença
+## 📄 License
 This repository is provided under the terms of use of the LICAP laboratory.
 This means you are allowed to use, copy, modify, merge, publish, distribute, and sell the software, as long as you retain the original copyright notice and a copy of the license in any redistribution.
