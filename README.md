@@ -1,59 +1,60 @@
-# Algoritmo Genético Paralelo com MPI — Projeto de TCC
+# Parallel Genetic Algorithm with MPI — TCC Project
 
-Este repositório contém o código-fonte desenvolvido para o Trabalho de Conclusão de Curso (TCC) da paralelização de Algoritmos Genético (NSGA-II para seleção de atributos) utilizando MPI (Message Passing Interface).
+This repository contains the source code developed for the Undergraduate Thesis (TCC) on the parallelization of a Genetic Algorithm (NSGA-II for feature selection) using MPI (Message Passing Interface).
 
-O projeto permite execução distribuída em cluster, acelerando o processamento evolutivo pela divisão das avaliações entre diferentes processos MPI.
+The project allows distributed execution on a cluster, speeding up evolutionary processing by dividing evaluations among different MPI processes.
 
 ---
 
-## 📥 Clonando o Repositório
+## 📥 Cloning the Repository
 
-Clone o repositório utilizando:
+Clone the repository using:
 
 ```bash
 git clone git@github.com:camilagrandinii/genetic-algorithm-parallel.git
 ```
 
-Acesse o diretório:
+Navigate to the directory:
 ```bash
 cd genetic-algorithm-parallel
 ```
-## Pré-Requisitos
-Antes de executar os experimentos, certifique-se de possuir:
-- Suporte a MPI (Message Passing Interface)
+
+## Prerequisites
+Before running the experiments, make sure you have:
+- MPI (Message Passing Interface) support
 Ex.: openmpi
 - Python 3.x
-- Todas as dependências do projeto instaladas (arquivo requirements.txt)
-- Máquina com múltiplos núcleos ou um cluster de computadores configurado
-- Acesso SSH sem senha entre o nó master e os nós subordinados
-- Todos os nós configurados corretamente no arquivo:
+- All project dependencies installed (via requirements.txt)
+- A machine with multiple cores or a properly configured computer cluster
+- Passwordless SSH access between the master node and the worker nodes
+- All nodes correctly configured in the file:
   
 ```bash
 /etc/hosts
 ```
 
-## Configuração do SSH
-- A autenticação sem senha é essencial para permitir que o mpirun distribua processos entre nós remotos automaticamente.
+## SSH Configuration
+- Passwordless authentication is essential to allow mpirun to automatically distribute processes among remote nodes.
 
-### Gere as Chaves
+### Generate Keys
 ```bash
 ssh-keygen -t rsa
 ```
 
-### Copie a chave pública para cada nó participante
+### Copy the Public Key to Each Participating Node
 ```bash
 ssh-copy-id usuario@nome_do_no
 ```
 
-Repita esse processo para todos os nós do cluster.
+Repeat this process for all cluster nodes.
 
-## Configuração dos Arquivos Necessários
+## Configuration of Required Files
 
 - /etc/hosts
 
-  Este arquivo define como cada máquina do cluster identifica as demais.
+This file defines how each machine in the cluster identifies the others.
 
-  Um exemplo funcional:
+A working example:
 
 ```bash
 127.0.0.1 localhost
@@ -76,7 +77,7 @@ Sem esta configuração, você pode encontrar:
 
 - mpi_hosts
 
-Define os nós participantes e quantos processos MPI cada nó pode receber (slots):
+Defines the participant nodes and how many MPI processes each node can receive (slots):
 
 ```bash
 master slots=1
@@ -84,8 +85,8 @@ servidorSubordinado1 slots=2
 servidorSubordinado2 slots=2
 ```
 
-Neste exemplo, o cluster possui 5 slots.
-Ou seja, sua execução pode usar: 
+In this example, the cluster has 5 slots.
+Thus, in it's execution we can use: 
 
 ```bash
 -np 5
@@ -93,7 +94,7 @@ Ou seja, sua execução pode usar:
 
 - teste.txt
 
-Arquivo com os parâmetros do algoritmo genético e definição do dataset.
+FIle with all the hyperparameters of the genetic algorithm and dataset definition.
 
 ```bash
 dataset_balanceado_final.csv classe
@@ -108,18 +109,19 @@ ElitismFactor 1
 DecisionTree  max_depth=5
 ```
 
-Configura:
-  - Nome do dataset
-  - Classe alvo
+Configures:
+  - Dataset name
+  - Target class
   - Seeds
-  - Intervals de população e gerações
-  - Taxas de mutação e crossover
-  - Profundidade máxima da árvore de decisão usada na avaliação
+  - Population and generation intervals
+  - Mutation and crossover rates
+  - Maximum depth of the decision tree used in evaluation
 
-Este arquivo deve ser adaptado conforme o experimento.
+This file must be adapted according to each experiment.
 
-## Execução do Código
-Após configurar: mpi_hosts, /etc/hosts e SSH sem senha
+## Running the Code
+
+After configuring mpi_hosts, /etc/hosts, and passwordless SSH:
 
 Execute:
 
@@ -127,17 +129,18 @@ Execute:
 mpirun --hostfile mpi_hosts -np [NUM_PROCESSOS] python main.py teste.txt
 ```
 
-Exemplo com 5 slots:
+Example with 5 slots:
+
 ```bash
 mpirun --hostfile mpi_hosts -np 5 python main.py teste.txt
 ```
 
-## Observações Importantes
-A correta configuração dos arquivos mpi_hosts, teste.txt e /etc/hosts é fundamental.
-O SSH sem senha deve funcionar perfeitamente antes de usar o MPI.
-Caso algum nó esteja inacessível, o mpirun falhará ao iniciar a execução.
-Todos os nós devem ter Python + dependências instalados.
+## Important Notes
+Correct configuration of the mpi_hosts, teste.txt, and /etc/hosts files is essential.
+Passwordless SSH must work perfectly before using MPI.
+If any node is inaccessible, mpirun will fail to start the execution.
+All nodes must have Python and project dependencies installed.
 
 ## 📄 Licença
-Este repositório é disponibilizado sob os termos de utilização do laboratório LICAP.
-Isso significa que você tem permissão para usar, copiar, modificar, mesclar, publicar, distribuir e vender o software, desde que mantenha o aviso de copyright original e uma cópia da licença em qualquer redistribuição.
+This repository is provided under the terms of use of the LICAP laboratory.
+This means you are allowed to use, copy, modify, merge, publish, distribute, and sell the software, as long as you retain the original copyright notice and a copy of the license in any redistribution.
